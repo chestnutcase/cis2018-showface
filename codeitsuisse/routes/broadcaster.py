@@ -7,7 +7,7 @@ from codeitsuisse import app;
 @app.route('/broadcaster/message-broadcast', methods=['POST'])
 def evaluate_broadcast_1():
     data = request.get_json();
-    requests.post('http://requestbin.fullcontact.com/1o9okt61',json=len(data.get("data")));
+    requests.post('http://requestbin.fullcontact.com/1o9okt61',json={"length":len(data.get("data"))});
     inputArray = data.get("data");
     nodeNames = [];
     linkedNodes = [];
