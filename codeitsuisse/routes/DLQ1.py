@@ -16,9 +16,9 @@ def main(inputs):
     q = np.array(inputs["question"]).reshape(len(inputs["question"]), 1)
     answer = np.matmul(params.transpose(), q)
     return answer[0][0]
-	
+
 @app.route('/machine-learning/question-1', methods=['POST'])
-def evaluate():
+def evaluate_mlq1():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
     result = main(data)
