@@ -16,7 +16,7 @@ def evaluate_gps():
         if exifData["GPS"][1] == "S":
             lat = lat * -1;
         long = exifData["GPS"][4][0][0] + float(exifData["GPS"][4][1][0]) / 60 + float(exifData["GPS"][4][2][0])/exifData["GPS"][4][2][1]/3600;
-        if exifData["GPS"][1] == "E":
+        if exifData["GPS"][1] == "W":
             long = long * -1;
         locations.append({"lat":lat,"long":long});
     return jsonify(locations);
