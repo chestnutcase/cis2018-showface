@@ -32,7 +32,7 @@ def find_prime(lst, inp):
                 return find_prime(lst, num-inp)
         inp -= 1
 
-		
+
 @app.route('/prime-sum', methods=['POST'])
 def evaluate():
     data = request.get_json();
@@ -40,4 +40,4 @@ def evaluate():
     inputValue = data.get("input");
     lst = []
     output = find_prime(lst, inputVlue)
-    return jsonify({"answer":output});
+    return jsonify(output);
