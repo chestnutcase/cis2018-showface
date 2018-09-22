@@ -169,7 +169,7 @@ def air_traffic_controller(jsoninput):
 @app.route('/airtrafficcontroller', methods=['POST'])
 def evaluate_air():
     data = request.get_json();
-    requests.post('http://requestbin.fullcontact.com/1o6p7y71', data=data);
+    requests.post('http://requestbin.fullcontact.com/1o6p7y71', json=data);
     logging.info("data sent for evaluation {}".format(data));
     output = air_traffic_controller(data);
     return jsonify(output);
