@@ -41,6 +41,6 @@ def evaluate_broadcast_1():
             if node == link:
                 linkExists = True;
                 break;
-        if linkExists:
+        if not linkExists:
             rootNodes.append(node);
     return jsonify({"result":rootNodes});
