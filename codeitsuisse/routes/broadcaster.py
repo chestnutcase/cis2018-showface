@@ -1,7 +1,7 @@
 import logging
 
 from flask import request, jsonify;
-
+import requests;
 from codeitsuisse import app;
 
 @app.route('/broadcaster/message-broadcast', methods=['POST'])
