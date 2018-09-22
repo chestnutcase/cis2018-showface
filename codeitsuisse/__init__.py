@@ -10,3 +10,4 @@ import codeitsuisse.routes.customersandhotel;
 import codeitsuisse.routes.photogps;
 import codeitsuisse.routes.DLQ2;
 import codeitsuisse.routes.broadcaster_debugged;
+import codeitsuisse.routes.tetris;

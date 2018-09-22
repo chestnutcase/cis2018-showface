@@ -8,7 +8,8 @@ logger = logging.getLogger(__name__)
 
 def tetris(jsoninput):
     seq = list(jsoninput["tetrominoSequence"])
-
+    solution = [];
+    counter = 0;
     for t in seq:
         solution.append(counter%10)
         counter += 2
