@@ -53,7 +53,7 @@ def transfer(jsoninput):
     return {"transactions": transactions}
 
 
-@app.route('/tallyexpense', methods=['POST'])
+@app.route('/tally-expense', methods=['POST'])
 def evaluate_expense():
     data = request.get_json();
     requests.post('http://requestbin.fullcontact.com/12ejc1f1', json=data);
