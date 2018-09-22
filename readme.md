@@ -1,6 +1,6 @@
-#Team Showface
+# Team Showface
 
-##How to use
+## How to use
 
 Copypaste the `square.py` file in `codeitsuisse/routes`
 In `@app.route('/square', methods=['POST'])`, replace `/square` with the name of the endpoint specified in question
