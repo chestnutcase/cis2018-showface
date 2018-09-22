@@ -1,6 +1,104 @@
 
 # coding: utf-8
 
+
+# In[1]:
+
+
+cells = [
+    # I    
+    [
+        [(0,0), (0,1), (0,2), (0,3)],
+        [(0,0), (1,0), (2,0), (3,0)],
+        [(0,0), (0,1), (0,2), (0,3)],
+        [(0,0), (1,0), (2,0), (3,0)]
+    ],
+    
+    # j
+    [
+        [(0,0), (1,0), (1,1), (1,2)],
+        [(0,0), (0,1), (1,0), (2,0)],
+        [(0,0), (0,1), (0,2), (1,2)],
+        [(0,1), (1,1), (2,1), (2,0)]
+    ],
+    
+    # L
+    [
+        [(0,0), (1,0), (0,1), (0,2)],
+        [(0,0), (0,1), (1,1), (2,1)],
+        [(0,2), (1,2), (1,1), (1,0)],
+        [(0,0), (1,0), (2,0), (2,1)]        
+    ],
+    
+    
+    # O
+    [
+        [(0,0), (0,1), (1,0), (1,1)],
+        [(0,0), (0,1), (1,0), (1,1)],
+        [(0,0), (0,1), (1,0), (1,1)],
+        [(0,0), (0,1), (1,0), (1,1)]
+    ],
+    
+    # S
+    [
+        [(0,0), (1,0), (1,1), (2,1)],
+        [(0,2), (0,1), (1,1), (1,0)],
+        [(0,1), (1,1), (1,0), (2,0)],
+        [(0,0), (0,1), (1,1), (1,2)]
+    ],
+    
+    # T
+    [
+        [(0,1), (1,1), (1,0), (2,1)],
+        [(0,1), (1,1), (1,0), (1,2)],
+        [(0,0), (1,0), (2,0), (1,1)],
+        [(0,0), (0,1), (0,2), (1,1)]
+    ],
+    
+    # Z
+    [
+        [(0,1), (1,1), (1,0), (2,0)],
+        [(0,0), (0,1), (1,1), (1,2)],
+        [(0,0), (1,0), (1,1), (2,1)],
+        [(0,2), (0,1), (1,1), (1,0)]
+    ]
+]
+
+
+# In[2]:
+
+
+bases = []
+for cell in cells:
+    cell_bases = []
+    for orientation in cell:
+        base_line = [4,4,4,4]
+        for point in orientation:
+            if point[1] < base_line[point[0]]:
+                base_line[point[0]] = point[1]
+        base_points = []
+        for i,base in enumerate(base_line):
+            if base != 4:
+                base_points.append((i,base))
+        cell_bases.append(base_points)
+    bases.append(cell_bases)
+
+
+# In[3]:
+
+
+widths = []
+for cell in cells:
+    cell_widths = []
+    for orientation in cell:
+        width = 0
+        for point in orientation:
+            if point[0] > width:
+                width = point[0]
+        cell_widths.append(width)
+    widths.append(cell_widths)
+
+
 # In[ ]:
 
 
@@ -354,8 +452,8 @@ def the_function(jsoninput):
 # In[ ]:
 
 
-json_input = {"tetrominoSequence": "IOJLLLTIOOTIOTZSTTTLLIJSZTIT"}
-print(the_function(json_input))
+# json_input = {"tetrominoSequence": "IOJLLLTIOOTIOTZSTTTLLIJSZTIT"}
+# print(the_function(json_input))
 
 
 # # Game declaration
@@ -392,101 +490,6 @@ def evaluate_tetris():
     return jsonify(output)
 
 
-# In[1]:
-
-
-cells = [
-    # I    
-    [
-        [(0,0), (0,1), (0,2), (0,3)],
-        [(0,0), (1,0), (2,0), (3,0)],
-        [(0,0), (0,1), (0,2), (0,3)],
-        [(0,0), (1,0), (2,0), (3,0)]
-    ],
-    
-    # j
-    [
-        [(0,0), (1,0), (1,1), (1,2)],
-        [(0,0), (0,1), (1,0), (2,0)],
-        [(0,0), (0,1), (0,2), (1,2)],
-        [(0,1), (1,1), (2,1), (2,0)]
-    ],
-    
-    # L
-    [
-        [(0,0), (1,0), (0,1), (0,2)],
-        [(0,0), (0,1), (1,1), (2,1)],
-        [(0,2), (1,2), (1,1), (1,0)],
-        [(0,0), (1,0), (2,0), (2,1)]        
-    ],
-    
-    
-    # O
-    [
-        [(0,0), (0,1), (1,0), (1,1)],
-        [(0,0), (0,1), (1,0), (1,1)],
-        [(0,0), (0,1), (1,0), (1,1)],
-        [(0,0), (0,1), (1,0), (1,1)]
-    ],
-    
-    # S
-    [
-        [(0,0), (1,0), (1,1), (2,1)],
-        [(0,2), (0,1), (1,1), (1,0)],
-        [(0,1), (1,1), (1,0), (2,0)],
-        [(0,0), (0,1), (1,1), (1,2)]
-    ],
-    
-    # T
-    [
-        [(0,1), (1,1), (1,0), (2,1)],
-        [(0,1), (1,1), (1,0), (1,2)],
-        [(0,0), (1,0), (2,0), (1,1)],
-        [(0,0), (0,1), (0,2), (1,1)]
-    ],
-    
-    # Z
-    [
-        [(0,1), (1,1), (1,0), (2,0)],
-        [(0,0), (0,1), (1,1), (1,2)],
-        [(0,0), (1,0), (1,1), (2,1)],
-        [(0,2), (0,1), (1,1), (1,0)]
-    ]
-]
-
-
-# In[2]:
-
-
-bases = []
-for cell in cells:
-    cell_bases = []
-    for orientation in cell:
-        base_line = [4,4,4,4]
-        for point in orientation:
-            if point[1] < base_line[point[0]]:
-                base_line[point[0]] = point[1]
-        base_points = []
-        for i,base in enumerate(base_line):
-            if base != 4:
-                base_points.append((i,base))
-        cell_bases.append(base_points)
-    bases.append(cell_bases)
-
-
-# In[3]:
-
-
-widths = []
-for cell in cells:
-    cell_widths = []
-    for orientation in cell:
-        width = 0
-        for point in orientation:
-            if point[0] > width:
-                width = point[0]
-        cell_widths.append(width)
-    widths.append(cell_widths)
 
 
 # In[4]:
@@ -522,5 +525,5 @@ for cell in cells:
 # In[ ]:
 
 
-get_ipython().system('jupyter nbconvert --to script tetris.ipynb')
+# get_ipython().system('jupyter nbconvert --to script tetris.ipynb')
 
