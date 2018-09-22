@@ -32,7 +32,7 @@ def evaluate_broadcast_1():
             if existingLinkedNode == nodeB:
                 nodeBLinked = True;
                 break;
-        if(!nodeBLinked):
+        if(not nodeBLinked):
             linkedNodes.append(nodeB);
     rootNodes = [];
     for node in nodeNames:
