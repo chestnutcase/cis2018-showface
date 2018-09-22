@@ -49,19 +49,19 @@ def evaluate_broadcast_1():
 def most_connected(connected_input):
     datas = connected_input["data"]
     dic = {}
-    
+
     for data in datas:
         sender, recevier = data.split("->")
         if sender in dic:
             dic[sender].append(recevier)
         else:
             dic[sender] = [recevier]
-            
+
         if recevier in dic:
             dic[recevier].append(sender)
         else:
             dic[recevier] = [sender]
-            
+
     diclist = [x for x in list(dic.items())]
     lengths = [len(x[1]) for x in diclist]
     result = diclist[lengths.index(max(lengths))][0]
@@ -74,4 +74,5 @@ def evaluate_broadcast_2():
     requests.post('http://requestbin.fullcontact.com/1k953nu1', json=data);
     logging.info("data sent for evaluation {}".format(data));
     output = most_connected(data);
+    requests.post('http://requestbin.fullcontact.com/1o9okt61', json=jsonify(output));
     return jsonify(output);
