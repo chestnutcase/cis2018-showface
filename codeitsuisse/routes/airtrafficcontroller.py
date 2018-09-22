@@ -18,7 +18,7 @@ def air_traffic_controller(jsoninput):
 
     if "Runways" in jsoninput["Static"]:
         runway_exist = True
-        runways = jsoninput["Static"]["Runways"]
+        runways = sorted(jsoninput["Static"]["Runways"])
 
     #print(runways)
 
