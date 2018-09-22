@@ -56,7 +56,7 @@ def main(inputs):
 def evaluate_skilltree():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
-    requests.post('http://requestbin.fullcontact.com/1k953nu1', json=data);
+    requests.post('http://requestbin.fullcontact.com/q7f7dgq7', json=data);
     result = main(data)
     logging.info("My result :{}".format(result))
     return jsonify(result);
