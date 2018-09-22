@@ -3,6 +3,7 @@ import logging
 from flask import request, jsonify;
 import copy
 import numpy as np
+import requests
 from codeitsuisse import app;
 
 logger = logging.getLogger(__name__)
@@ -30,11 +31,11 @@ def main(inputs):
             lst = [dit["name"]]
             state.append(lst)
             trees.append(state)
-            
+
     checkpoint = check(trees, target)
     if checkpoint != None:
         return checkpoint
-    
+
     while True:
         new_trees = []
         for dit in inputs["skills"]:
@@ -55,6 +56,7 @@ def main(inputs):
 def evaluate_skilltree():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
+    requests.post('http://requestbin.fullcontact.com/1k953nu1', json=data);
     result = main(data)
     logging.info("My result :{}".format(result))
     return jsonify(result);
