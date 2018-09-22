@@ -39,5 +39,5 @@ def evaluate_prime():
     logging.info("data sent for evaluation {}".format(data))
     inputValue = data.get("input");
     lst = []
-    output = find_prime(lst, inputVlue)
+    output = find_prime(lst, inputValue)
     return jsonify(output);
