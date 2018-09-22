@@ -27,7 +27,7 @@ def model():
     return model
 
 @app.route('/machine-learning/question-2', methods=['POST'])
-def evaluate_mlq1():
+def evaluate_mlq2():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
 	n_samples = np.array(data["question"]).shape[0]
