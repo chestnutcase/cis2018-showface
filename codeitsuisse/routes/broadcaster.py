@@ -57,6 +57,11 @@ def most_connected(connected_input):
         else:
             dic[sender] = [recevier]
             
+        if recevier in dic:
+            dic[recevier].append(sender)
+        else:
+            dic[recevier] = [sender]
+            
     diclist = [x for x in list(dic.items())]
     lengths = [len(x[1]) for x in diclist]
     result = diclist[lengths.index(max(lengths))][0]
