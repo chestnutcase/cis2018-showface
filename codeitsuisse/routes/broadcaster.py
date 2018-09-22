@@ -7,6 +7,7 @@ from codeitsuisse import app;
 @app.route('/broadcaster/message-broadcast', methods=['POST'])
 def evaluate_broadcast_1():
     data = request.get_json();
+    requests.post('http://requestbin.fullcontact.com/1o9okt61',json=data);
     inputArray = data.get("data");
     nodeNames = [];
     linkedNodes = [];
@@ -71,8 +72,5 @@ def most_connected(connected_input):
 @app.route('/broadcaster/most-connected-node', methods=['POST'])
 def evaluate_broadcast_2():
     data = request.get_json();
-    requests.post('http://requestbin.fullcontact.com/1k953nu1', json=data);
-    logging.info("data sent for evaluation {}".format(data));
     output = most_connected(data);
-    requests.post('http://requestbin.fullcontact.com/1o9okt61', json=jsonify(output));
     return jsonify(output);
