@@ -7,14 +7,13 @@ from codeitsuisse import app;
 
 logger = logging.getLogger(__name__)
 
-
 def check(trees, target):
     points_lst = []
     counts_lst = []
     for count, state in enumerate(trees):
         if state[1] >= target:
             points_lst.append(state[0])
-            counts_lst.append(state[1])
+            counts_lst.append(count)
     if points_lst == []:
         return None
     index = counts_lst[np.argmin(points_lst)]
