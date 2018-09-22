@@ -2,7 +2,7 @@ import logging
 
 from flask import request, jsonify;
 import numpy as np
-import keras 
+import keras
 from keras.layers import Convolution2D, MaxPooling2D
 from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.models import Sequential
