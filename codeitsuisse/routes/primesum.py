@@ -34,7 +34,7 @@ def find_prime(lst, inp):
 
 
 @app.route('/prime-sum', methods=['POST'])
-def evaluate():
+def evaluate_prime():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
     inputValue = data.get("input");
