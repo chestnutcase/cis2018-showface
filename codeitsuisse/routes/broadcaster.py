@@ -37,8 +37,8 @@ def evaluate_broadcast_1():
     rootNodes = [];
     for node in nodeNames:
         linkExists = False;
-        for links in linkedNodes:
-            if node == linkedNodes:
+        for link in linkedNodes:
+            if node == link:
                 linkExists = True;
                 break;
         if linkExists:
