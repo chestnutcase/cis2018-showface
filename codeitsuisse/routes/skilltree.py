@@ -27,26 +27,27 @@ def main(inputs):
         if type(dit["require"]) != str:
             state = [0, 0]
             state[0] += dit["points"]
-            state[0] += dit["offense"]
+            state[1] += dit["offense"]
             lst = [dit["name"]]
             state.append(lst)
             trees.append(state)
-
+            
     checkpoint = check(trees, target)
     if checkpoint != None:
         return checkpoint
-
+    
     while True:
         new_trees = []
         for dit in inputs["skills"]:
             for state in trees:
-                if dit["require"] in state[2]:
-                    tree = state.copy()
+                if dit["require"] in state[2] and dit["name"] not in state[2]:
+                    tree = copy.deepcopy(state)
                     tree[0] += dit["points"]
                     tree[1] += dit["offense"]
-                    tree[2].append(dit["require"])
+                    tree[2].append(dit["name"])
+                    print(tree)
                     new_trees.append(tree)
-        trees = new_trees.copy()
+        trees = copy.deepcopy(new_trees)
         checkpoint = check(new_trees, target)
         if checkpoint != None:
             return checkpoint
