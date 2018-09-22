@@ -17,15 +17,15 @@ def evaluate_broadcast_1():
         nodeAExists = False;
         nodeBExists = False;
         for existingNode in nodeNames:
-            if nodeAExists && nodeBExists:
+            if nodeAExists and nodeBExists:
                 break
             if existingNode == nodeA:
                 nodeAExists = True
             if existingNode == nodeB:
                 nodeBExists = True
-        if !nodeAExists:
+        if not nodeAExists:
             nodeNames.append(nodeA);
-        if !nodeBExists:
+        if not nodeBExists:
             nodeNames.append(nodeB);
         nodeBLinked = False;
         for existingLinkedNode in linkedNodes:
