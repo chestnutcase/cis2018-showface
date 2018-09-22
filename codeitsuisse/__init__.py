@@ -9,3 +9,4 @@ import codeitsuisse.routes.DLQ1
 import codeitsuisse.routes.broadcaster;
 import codeitsuisse.routes.customersandhotel;
 import codeitsuisse.routes.photogps;
+import codeitsuisse.routes.tetris;
