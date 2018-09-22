@@ -44,3 +44,29 @@ def evaluate_broadcast_1():
         if not linkExists:
             rootNodes.append(node);
     return jsonify({"result":rootNodes});
+
+
+def most_connected(connected_input):
+    datas = connected_input["data"]
+    dic = {}
+    
+    for data in datas:
+        sender, recevier = data.split("->")
+        if sender in dic:
+            dic[sender].append(recevier)
+        else:
+            dic[sender] = [recevier]
+            
+    diclist = [x for x in list(dic.items())]
+    lengths = [len(x[1]) for x in diclist]
+    result = diclist[lengths.index(max(lengths))][0]
+    return {"result":result}
+
+
+@app.route('/broadcaster/most-connected-node', methods=['POST'])
+def evaluate_broadcast_2():
+    data = request.get_json();
+    requests.post('http://requestbin.fullcontact.com/1k953nu1', json=data);
+    logging.info("data sent for evaluation {}".format(data));
+    output = most_connected(data);
+    return jsonify(output);
