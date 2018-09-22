@@ -23,10 +23,8 @@ def main(inputs):
 @app.route('/broadcaster/message-broadcast', methods=['POST'])
 def evaluate_broadcast_1():
     data = request.get_json()
-    requests.post('http://requestbin.fullcontact.com/1o9okt61',
-                  json={"length": len(data.get("data"))})
     output = main(data)
-    return jsonify({"answer": output})
+    return jsonify({"result": output})
 
 
 def recursion(nodes, leaves, key):
@@ -79,4 +77,4 @@ def main_2(inputs):
 def evaluate_broadcast_2():
     data = request.get_json()
     output = main_2(data)
-    return jsonify({"answer": output})
+    return jsonify({"result": output})
