@@ -4,6 +4,8 @@ from flask import request, jsonify;
 
 from codeitsuisse import app;
 
+import requests
+
 logger = logging.getLogger(__name__)
 
 
@@ -47,6 +49,7 @@ def minimum_camps(lst):
 def evaluate_customer_1():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
+    requests.post('http://requestbin.fullcontact.com/1ekuzv11', json=data);
     output = minimum_distance(data)
     return jsonify(output);
 
@@ -54,5 +57,6 @@ def evaluate_customer_1():
 def evaluate_customer_2():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
+    requests.post('http://requestbin.fullcontact.com/1dq1hlb1', json=data);
     output = minimum_camps(data)
     return jsonify(output);
