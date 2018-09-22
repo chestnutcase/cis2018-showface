@@ -19,13 +19,13 @@ def minimum_distance(arr):
     return {"answer": result}
 
 def minimum_camps(lst):
-    lst = sorted(lst, key=lambda k: k['pos']) 
-    
+    lst = sorted(lst, key=lambda k: k['pos'])
+
     pos_arr = [a["pos"] for a in lst]
     dis_arr = [a["distance"] for a in lst]
     cleared = [False] * len(lst)
-    
-    
+
+
     count = 1
     location = pos_arr[0] + dis_arr[0]
 #     print(location)
@@ -44,17 +44,15 @@ def minimum_camps(lst):
 
 
 @app.route('/customers-and-hotel/minimum-distance', methods=['POST'])
-def evaluate_prime():
+def evaluate_customer_1():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
-    lst = data.get("input");
-    output = minimum_distance(lst)
+    output = minimum_distance(data)
     return jsonify(output);
 
 @app.route('/customers-and-hotel/minimum-camps', methods=['POST'])
-def evaluate_prime():
+def evaluate_customer_2():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
-    lst = data.get("input");
-    output = minimum_camps(lst)
+    output = minimum_camps(data)
     return jsonify(output);
