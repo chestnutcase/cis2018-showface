@@ -8,8 +8,6 @@ from codeitsuisse import app;
 logger = logging.getLogger(__name__)
 
 
-@app.route('/skill-tree', methods=['POST'])
-
 def check(trees, target):
     points_lst = []
     counts_lst = []
@@ -33,11 +31,11 @@ def main(inputs):
             lst = [dit["name"]]
             state.append(lst)
             trees.append(state)
-            
+
     checkpoint = check(trees, target)
     if checkpoint != None:
         return checkpoint
-    
+
     while True:
         new_trees = []
         for dit in inputs["skills"]:
@@ -52,7 +50,8 @@ def main(inputs):
         checkpoint = check(new_trees, target)
         if checkpoint != None:
             return checkpoint
-			
+
+@app.route('/skill-tree', methods=['POST'])
 def evaluate_skilltree():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
