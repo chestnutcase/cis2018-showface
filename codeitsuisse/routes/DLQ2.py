@@ -13,7 +13,7 @@ from codeitsuisse import app
 logger = logging.getLogger(__name__)
 
 
-def model():
+def modelA():
     model = Sequential()
     model.add(Convolution2D(
         32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
@@ -36,7 +36,7 @@ def evaluate_mlq2():
     logging.info("data sent for evaluation {}".format(data))
     n_samples = np.array(data["question"]).shape[0]
     questions = np.array(data["question"]).reshape((n_samples, 28, 28, 1))
-    model = model()
+    model = modelA()
     model.load_weights("mnist-weights.yaml")
     prediction = model.predict(questions).reshape(n_samples)
     logging.info("My result :{}".format(result))
