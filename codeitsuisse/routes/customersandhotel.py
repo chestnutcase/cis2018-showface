@@ -22,25 +22,27 @@ def minimum_distance(arr):
 
 
 def minimum_camps(lst):
-    lst = sorted(lst, key=lambda k: k['pos'])
+    for item in lst:
+        item["rightest"] = item["pos"] + item["distance"]
+
+    lst = sorted(lst, key=lambda k: k['rightest']) 
 
     pos_arr = [a["pos"] for a in lst]
     dis_arr = [a["distance"] for a in lst]
-    cleared = [False] * len(lst)
 
-    count = 1
-    location = pos_arr[0] + dis_arr[0]
-#     print(location)
+
+    count = 0
+    location = -float('inf')
 
     for i in range(len(lst)):
-        #         print("compare", pos_arr[i] - dis_arr[i], location)
+        print("compare", pos_arr[i], "-" ,dis_arr[i], pos_arr[i] - dis_arr[i], location)
 
         if pos_arr[i] - dis_arr[i] > location:
             count += 1
             location = pos_arr[i] + dis_arr[i]
-#             print(location)
+            print("add : ", location)
 
-#     print(count)
+    print(count)
 
     return {"answer": count}
 
