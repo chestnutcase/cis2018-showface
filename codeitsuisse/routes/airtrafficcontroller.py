@@ -170,6 +170,5 @@ def air_traffic_controller(jsoninput):
 def evaluate_air():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data));
-    jsoninput = data.get("input");
-    output = air_traffic_controller(jsoninput);
+    output = air_traffic_controller(data);
     return jsonify(output);
