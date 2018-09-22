@@ -1,22 +1,24 @@
 import logging
 
-from flask import request, jsonify;
-import requests;
-from codeitsuisse import app;
+from flask import request, jsonify
+import requests
+from codeitsuisse import app
+
 
 @app.route('/broadcaster/message-broadcast', methods=['POST'])
 def evaluate_broadcast_1():
-    data = request.get_json();
-    requests.post('http://requestbin.fullcontact.com/1o9okt61',json={"length":len(data.get("data"))});
-    inputArray = data.get("data");
-    nodeNames = [];
-    linkedNodes = [];
+    data = request.get_json()
+    requests.post('http://requestbin.fullcontact.com/1o9okt61',
+                  json={"length": len(data.get("data"))})
+    inputArray = data.get("data")
+    nodeNames = []
+    linkedNodes = []
     for connection in inputArray:
-        fields = connection.split("->");
-        nodeA = fields[0];
-        nodeB = fields[1];
-        nodeAExists = False;
-        nodeBExists = False;
+        fields = connection.split("->")
+        nodeA = fields[0]
+        nodeB = fields[1]
+        nodeAExists = False
+        nodeBExists = False
         for existingNode in nodeNames:
             if nodeAExists and nodeBExists:
                 break
@@ -25,26 +27,26 @@ def evaluate_broadcast_1():
             if existingNode == nodeB:
                 nodeBExists = True
         if not nodeAExists:
-            nodeNames.append(nodeA);
+            nodeNames.append(nodeA)
         if not nodeBExists:
-            nodeNames.append(nodeB);
-        nodeBLinked = False;
+            nodeNames.append(nodeB)
+        nodeBLinked = False
         for existingLinkedNode in linkedNodes:
             if existingLinkedNode == nodeB:
-                nodeBLinked = True;
-                break;
+                nodeBLinked = True
+                break
         if(not nodeBLinked):
-            linkedNodes.append(nodeB);
-    rootNodes = [];
+            linkedNodes.append(nodeB)
+    rootNodes = []
     for node in nodeNames:
-        linkExists = False;
+        linkExists = False
         for link in linkedNodes:
             if node == link:
-                linkExists = True;
-                break;
+                linkExists = True
+                break
         if not linkExists:
-            rootNodes.append(node);
-    return jsonify({"result":rootNodes});
+            rootNodes.append(node)
+    return jsonify({"result": rootNodes})
 
 
 def most_connected(connected_input):
@@ -66,11 +68,11 @@ def most_connected(connected_input):
     diclist = [x for x in list(dic.items())]
     lengths = [len(x[1]) for x in diclist]
     result = diclist[lengths.index(max(lengths))][0]
-    return {"result":result}
+    return {"result": result}
 
 
 @app.route('/broadcaster/most-connected-node', methods=['POST'])
 def evaluate_broadcast_2():
-    data = request.get_json();
-    output = most_connected(data);
-    return jsonify(output);
+    data = request.get_json()
+    output = most_connected(data)
+    return jsonify(output)

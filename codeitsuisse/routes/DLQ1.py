@@ -1,11 +1,12 @@
 import logging
 
-from flask import request, jsonify;
+from flask import request, jsonify
 import numpy as np
 from numpy.linalg import inv
-from codeitsuisse import app;
+from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
+
 
 def main(inputs):
     inp = np.array(inputs["input"])
@@ -17,10 +18,11 @@ def main(inputs):
     answer = np.matmul(params.transpose(), q)
     return answer[0][0]
 
+
 @app.route('/machine-learning/question-1', methods=['POST'])
 def evaluate_mlq1():
-    data = request.get_json();
+    data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     result = main(data)
     logging.info("My result :{}".format(result))
-    return jsonify({"answer":result});
+    return jsonify({"answer": result})

@@ -1,8 +1,9 @@
 import logging
 
-from flask import request, jsonify;
-import requests;
-from codeitsuisse import app;
+from flask import request, jsonify
+import requests
+from codeitsuisse import app
+
 
 def main(inputs):
     connections = inputs["data"]
@@ -17,12 +18,15 @@ def main(inputs):
 
     return list(output)
 
+
 @app.route('/broadcaster/message-broadcast', methods=['POST'])
 def evaluate_broadcast_1():
-    data = request.get_json();
-    requests.post('http://requestbin.fullcontact.com/1o9okt61',json={"length":len(data.get("data"))});
-	output = main(data)
-	return jsonify({"answer":output})
+    data = request.get_json()
+    requests.post('http://requestbin.fullcontact.com/1o9okt61',
+                  json={"length": len(data.get("data"))})
+    output = main(data)
+    return jsonify({"answer": output})
+
 
 def recursion(nodes, leaves, key):
     num = 0
@@ -35,6 +39,7 @@ def recursion(nodes, leaves, key):
     for i in children:
         num += recursion(nodes, leaves, i)
     return num
+
 
 def main_2(inputs):
     connections = inputs["data"]
@@ -68,8 +73,9 @@ def main_2(inputs):
     _max = np.argmax(lst)
     return roots[_max]
 
+
 @app.route('/broadcaster/most-connected-node', methods=['POST'])
 def evaluate_broadcast_2():
-    data = request.get_json();
-    output = main_2(data);
-    return jsonify({"answer":output})
+    data = request.get_json()
+    output = main_2(data)
+    return jsonify({"answer": output})

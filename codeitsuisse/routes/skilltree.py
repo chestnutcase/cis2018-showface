@@ -1,12 +1,13 @@
 import logging
 
-from flask import request, jsonify;
+from flask import request, jsonify
 import copy
 import numpy as np
 import requests
-from codeitsuisse import app;
+from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
+
 
 def check(trees, target):
     points_lst = []
@@ -19,6 +20,7 @@ def check(trees, target):
         return None
     index = counts_lst[np.argmin(points_lst)]
     return trees[index][2]
+
 
 def main(inputs):
     target = inputs["boss"]["offense"]
@@ -52,11 +54,12 @@ def main(inputs):
         if checkpoint != None:
             return checkpoint
 
+
 @app.route('/skill-tree', methods=['POST'])
 def evaluate_skilltree():
-    data = request.get_json();
+    data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    requests.post('http://requestbin.fullcontact.com/q7f7dgq7', json=data);
+    requests.post('http://requestbin.fullcontact.com/q7f7dgq7', json=data)
     result = main(data)
     logging.info("My result :{}".format(result))
-    return jsonify(result);
+    return jsonify(result)
