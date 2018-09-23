@@ -349,7 +349,7 @@ def drop_element(game_state, block, rotate, move, update=False):
     for point in block_cells:
         if point[1]+height >= 19:
             #print("OVERFLOW")
-
+            pass
 
         if game_state[point[1]+height][point[0]+move] != 0:  # row then column
             #print("ERROR")
