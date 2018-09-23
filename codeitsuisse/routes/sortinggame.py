@@ -419,7 +419,7 @@ def main_main(jsoninput):
         moved_grid_number = 3*moved_grid[0]+moved_grid[1]
         grid = np.array(last_step).flatten()
         moves = grid[moved_grid_number]
-        solution_array.append(moves) # because the top left grid is zero
+        solution_array.append(int(str(moves))) # because the top left grid is zero
         step.show_state()
         last_step = step.state.grid
     # steps includes the goal as well so -1 is the moves
