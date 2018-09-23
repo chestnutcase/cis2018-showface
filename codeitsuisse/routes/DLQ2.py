@@ -42,5 +42,5 @@ def evaluate_mlq2():
     prediction = model.predict(questions).reshape(n_samples, 10)
     output = []
     for i in prediction:
-        output.append(i.index(1))
+        output.append(list(i).index(1))
     return jsonify({"answer": output})
