@@ -443,13 +443,20 @@ def the_function(jsoninput):
     blockchain = jsoninput["tetrominoSequence"]
     movechain = []
     game_state = d(game_state_empty)
-    for block in list(blockchain):
-        game_state, action, score = add_element(game_state, block)
-        game_state = resolve_rows(game_state)
-        movechain.append(action)
-        #print("score:", score)
-    #     pp(game_state)
-    #    ps(game_state)
+    
+    try:
+        for block in list(blockchain):
+            game_state, action, score = add_element(game_state, block)
+            game_state = resolve_rows(game_state)
+            game_state = resolve_rows(game_state)
+            game_state = resolve_rows(game_state)
+            game_state = resolve_rows(game_state)
+            movechain.append(action)
+            print("score:", score)
+        #     pp(game_state)
+            ps(game_state)
+    except: 
+        movechain = movechain+[0]*(len(blockchain)-len(movechain))
     return {"actions":movechain}
 
 
