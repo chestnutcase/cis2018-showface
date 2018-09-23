@@ -358,6 +358,7 @@ def drop_element(game_state, block, rotate, move, update=False):
 
 #         #print(point[1]+height, point[0]+move)
 #         #print(game_state[point[1]+height][point[0]+move])
+            pass
         game_state[point[1]+height][point[0]+move] = 1
 
 #         if update:
