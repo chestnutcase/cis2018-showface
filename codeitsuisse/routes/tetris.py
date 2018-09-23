@@ -333,6 +333,7 @@ def move_element(game_state, block, rotate):
 
 # In[ ]:
 
+import random
 
 def drop_element(game_state, block, rotate, move, update=False):
     game_state = d(game_state)
@@ -368,7 +369,7 @@ def drop_element(game_state, block, rotate, move, update=False):
             pass
 
 
-    score = 100000*calculate_holes(game_state) + calculate_borders(game_state)
+    score = 100000*calculate_holes(game_state) + calculate_borders(game_state) + random.randint(0, 3)
     # discourages (especially) overhang and borders
 
     if update:
