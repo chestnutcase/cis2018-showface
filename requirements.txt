@@ -29,3 +29,4 @@ Werkzeug==0.14.1
 piexif==1.0.13
 keras==2.1.6
 tensorflow==1.8.0
+board==0.0.0
