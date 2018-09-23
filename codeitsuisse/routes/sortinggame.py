@@ -241,6 +241,9 @@ if __name__ == "__main__":
 
 
 #end import
+
+from flask import request, jsonify
+from codeitsuisse import app
 import numpy as np
 import sys
 import getopt
@@ -427,7 +430,5 @@ def main_main(jsoninput):
 @app.route('/sorting-game', methods=['POST'])
 def evaluate_sorting():
     data = request.get_json()
-    requests.post('http://requestbin.fullcontact.com/1k953nu1', json=data)
-    logging.info("data sent for evaluation {}".format(data))
     output = main_main(data)
     return jsonify(output)
