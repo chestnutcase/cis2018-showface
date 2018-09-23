@@ -220,6 +220,16 @@ def main(json_input):
     print "Did it in", len(steps)-1, "moves."
     return {"result": solution_array}
 
+
+@app.route('/sorting-game', methods=['POST'])
+def evaluate_sorting():
+    data = request.get_json()
+    requests.post('http://requestbin.fullcontact.com/1k953nu1', json=data)
+    logging.info("data sent for evaluation {}".format(data))
+    output = main(data)
+    return jsonify(output)
+
+
 if __name__ == "__main__":
     jsoninput = {"puzzle":[
         [1,2,3],
