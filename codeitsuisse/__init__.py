@@ -12,4 +12,4 @@ import codeitsuisse.routes.DLQ2;
 import codeitsuisse.routes.broadcaster_debugged;
 import codeitsuisse.routes.tetris;
 #import codeitsuisse.routes.sortinggame;
-import codeitsuisse.route.twodino
+import codeitsuisse.routes.twodino
