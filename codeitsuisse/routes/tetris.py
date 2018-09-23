@@ -445,7 +445,7 @@ def the_function(jsoninput):
         movechain.append(action)
         print("score:", score)
     #     pp(game_state)
-        ps(game_state)
+    #    ps(game_state)
     return {"actions":movechain}
 
 
