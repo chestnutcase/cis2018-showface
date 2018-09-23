@@ -351,19 +351,21 @@ def drop_element(game_state, block, rotate, move, update=False):
             #print("OVERFLOW")
             pass
 
-        if game_state[point[1]+height][point[0]+move] != 0:  # row then column
-            #print("ERROR")
-            #print(point[1]+height, point[0]+move)
-            #print(game_state[point[1]+height][point[0]+move])
+        try:
+            if game_state[point[1]+height][point[0]+move] != 0:  # row then column
+                #print("ERROR")
+                #print(point[1]+height, point[0]+move)
+                #print(game_state[point[1]+height][point[0]+move])
 
-#         #print(point[1]+height, point[0]+move)
-#         #print(game_state[point[1]+height][point[0]+move])
+    #         #print(point[1]+height, point[0]+move)
+    #         #print(game_state[point[1]+height][point[0]+move])
+                pass
+            game_state[point[1]+height][point[0]+move] = 1
+
+    #         if update:
+    #             #print([point[1]+height],[point[0]+move])
+        except:
             pass
-        game_state[point[1]+height][point[0]+move] = 1
-
-#         if update:
-#             #print([point[1]+height],[point[0]+move])
-
 
 
     score = 100000*calculate_holes(game_state) + calculate_borders(game_state)
