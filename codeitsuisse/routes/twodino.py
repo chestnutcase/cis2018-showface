@@ -24,7 +24,7 @@ def the_function(jsoninput):
     #print(max_value)
 
 
-    length = 3000*difference
+    length = 50*difference
     limits = [0 for _ in range(2*length + 1)]
     limits[length] = 1
     # position length + 1 is 0
