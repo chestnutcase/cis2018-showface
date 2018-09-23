@@ -53,7 +53,7 @@ class tile_puzzle_a_star_node(a_star_node):
         for l in m:
             c.append(tile_puzzle_a_star_node(l, depth))
         return c
-    
+
     def show_state(self):
         self.state.show_board()
 
@@ -105,8 +105,8 @@ class a_star_solver():
         open_list = [start] # Set initial state of open
         out_of_place = start.get_state().tiles_out_of_place(
                 goal.get_state())
-        print "Tiles out of place:", out_of_place
-        print "Isolated moves from goal state:", (
+        #print "Tiles out of place:", out_of_place
+        #print "Isolated moves from goal state:", (
         start.get_state().moves_to_state(goal.get_state()))
         closed_list = [] # Set initial state of closed
         depth = 0
@@ -115,17 +115,17 @@ class a_star_solver():
             x = open_list.pop(0) # Pop the first element (x) off it
             if len(x.path) > depth: # Keep an eye on the depth
                 depth = len(x.path)
-                print("depth")
-                print depth # Print the depth to measure progress
+                #print("depth")
+                #print depth # #print the depth to measure progress
             if x.equals(goal): # If we've reached the goal state
                 # Return path from start to x
-                print "Found it after", depth, "moves"
-                print "Total children added to open list:", count
-                print ""
+                #print "Found it after", depth, "moves"
+                #print "Total children added to open list:", count
+                #print ""
                 return x.path + [x]
             else:
-                # Get a list of x's children 
-                children = x.get_children(depth) 
+                # Get a list of x's children
+                children = x.get_children(depth)
                 for c in children:
                     # If c is already in one or other of the lists
                     child_open = self.state_in_list(c, open_list)
@@ -135,7 +135,7 @@ class a_star_solver():
                         # If child's path length < c's path length
                         if len(child_open.path) < len(c.path):
                             # Give child c's path
-                            child_open.path = c.path 
+                            child_open.path = c.path
                     # If child is already in closed_list
                     elif child_closed is not None:
                         # If child's path length < c's path length
@@ -145,17 +145,17 @@ class a_star_solver():
                             # Add child to open list
                             open_list.append(child_closed)
                     # If child isn't in either list
-                    else:    
+                    else:
                         self.evaluate(c, goal, depth) # Evaluate child
                         open_list.append(c) # Add it to the open list
-                        count += 1 
+                        count += 1
                         p = x.path[:] # Get x's path
                         p.extend(c.path[:]) # Add c's path to it
                         c.path = p # Set c's path to that
                         c.path.append(x) # Add x to the end of c's path
             closed_list.append(x) # Add x to the closed list
             self.sort_open(open_list) # Sort the open list
-        print "Did not find solution"
+        #print "Did not find solution"
         return None
 
 def solver_find_blank_pos(grid):
@@ -163,61 +163,61 @@ def solver_find_blank_pos(grid):
         for j in xrange(len(grid)):
             if grid[i][j] == 0:
                 return (i, j)
-    print "Couldn't find the blank tile."
-    return (0, 0)    
-    
+    #print "Couldn't find the blank tile."
+    return (0, 0)
+
 def main(json_input):
     puzzle = jsoninput["puzzle"]
-#     #print sys.argv
+#     ##print sys.argv
 #     if len(sys.argv) > 1:
 #         if str.isdigit(sys.argv[1]) and sys.argv[1] > 1:
 #             size = int(sys.argv[1])
-#             print "Size:", size
+#             #print "Size:", size
 #         else:
-#             print "Usage: python solver.py <board size> <random iterations>"
+#             #print "Usage: python solver.py <board size> <random iterations>"
 #             size = 3
-#             print "Size:", size
+#             #print "Size:", size
 #     else:
 #         size = 3
-#         print "Size:", size
+#         #print "Size:", size
 #     if len(sys.argv) > 2:
 #         if str.isdigit(sys.argv[2]) and sys.argv[2] >= 0:
 #             random_iter = int(sys.argv[2])
-#             print "Random iterations:", random_iter
+#             #print "Random iterations:", random_iter
 #         else:
-#             print "Usage: python solver.py <board size> <random iterations>"
+#             #print "Usage: python solver.py <board size> <random iterations>"
 #             random_iter = 15
-#             print "Random iterations:", random_iter
+#             #print "Random iterations:", random_iter
 #     else:
 #         random_iter = 15
-#         print "Random iterations:", random_iter
+#         #print "Random iterations:", random_iter
     b = board(3)
-    print("inserted")
+    #print("inserted")
 #     c = board(3, [[2,5,3],[1,0,6],[4,7,8]])
     c = board(len(puzzle), puzzle)
 #     c = board(b.size, b.copy_grid())
-#     print(c.show_board())
+#     #print(c.show_board())
 #     c.randomise(random_iter)
     b_node = tile_puzzle_a_star_node(b, 0)
     c_node = tile_puzzle_a_star_node(c, 0)
-    #print "start:", b_node
-    #print "goal:", c_node
+    ##print "start:", b_node
+    ##print "goal:", c_node
     solver = a_star_solver()
     steps = solver.a_star(c_node, b_node)
-    print "Start state"
+    #print "Start state"
     steps[0].show_state()
-    print "--------------"
+    #print "--------------"
     solution_array = []
-    steps_less_start = steps[1:] # Don't print the start state
+    steps_less_start = steps[1:] # Don't #print the start state
     for step in steps_less_start:
         moved_grid = solver_find_blank_pos(step.state.grid)
-        print(moved_grid)
+        #print(moved_grid)
         moved_grid_number = 3*moved_grid[0]+moved_grid[1]
-        print(moved_grid_number)
+        #print(moved_grid_number)
         solution_array.append(moved_grid_number + 1) # because the top left grid is zero
         step.show_state()
     # steps includes the goal as well so -1 is the moves
-    print "Did it in", len(steps)-1, "moves."
+    #print "Did it in", len(steps)-1, "moves."
     return {"result": solution_array}
 
 
@@ -236,4 +236,4 @@ if __name__ == "__main__":
         [4,8,5],
         [7,6,0]
     ]}
-    print(main(jsoninput))
+    #print(main(jsoninput))
