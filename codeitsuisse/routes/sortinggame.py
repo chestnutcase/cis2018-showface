@@ -241,6 +241,9 @@ if __name__ == "__main__":
 
 
 #end import
+
+from flask import request, jsonify
+from codeitsuisse import app
 import numpy as np
 import sys
 import getopt
@@ -416,7 +419,7 @@ def main_main(jsoninput):
         moved_grid_number = 3*moved_grid[0]+moved_grid[1]
         grid = np.array(last_step).flatten()
         moves = grid[moved_grid_number]
-        solution_array.append(moves) # because the top left grid is zero
+        solution_array.append(int(str(moves))) # because the top left grid is zero
         step.show_state()
         last_step = step.state.grid
     # steps includes the goal as well so -1 is the moves
@@ -427,7 +430,5 @@ def main_main(jsoninput):
 @app.route('/sorting-game', methods=['POST'])
 def evaluate_sorting():
     data = request.get_json()
-    requests.post('http://requestbin.fullcontact.com/1k953nu1', json=data)
-    logging.info("data sent for evaluation {}".format(data))
     output = main_main(data)
     return jsonify(output)
