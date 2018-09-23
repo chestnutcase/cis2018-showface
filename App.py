@@ -1,5 +1,5 @@
 import logging
-from codeitsuisse import  app
+from codeitsuisse import app
 logger = logging.getLogger(__name__)
 
 @app.route('/', methods=['GET'])
@@ -22,4 +22,3 @@ if __name__ == "__main__":
 
     logger.info("Starting application ...")
     app.run()
-
