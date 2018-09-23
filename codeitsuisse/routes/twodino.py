@@ -10,8 +10,8 @@ def the_function(jsoninput):
     difference = jsoninput["maximum_difference_for_calories"]
     A = jsoninput["calories_for_each_type_for_raphael"]
     B = jsoninput["calories_for_each_type_for_leonardo"]
-    MODULO = 100000123 
-    
+    MODULO = 100000123
+
     max_value = max(max(B),max(A))
 
     # do some sorting here
@@ -22,9 +22,9 @@ def the_function(jsoninput):
     C = sorted(C, key=abs)
     #print(C)
     #print(max_value)
-    
-    
-    length = 3*difference
+
+
+    length = 50*difference
     limits = [0 for _ in range(2*length + 1)]
     limits[length] = 1
     # position length + 1 is 0
@@ -49,11 +49,11 @@ def the_function(jsoninput):
 
         limits = [x+y%MODULO for x,y in zip(array_1,array_2)]
         #print(limits)
-        
+
     #print("\nresult")
     relevant_range = limits[length - difference: -(length - difference)]
     result = sum([x%MODULO for x in relevant_range])
-    
+
     return {"result":result}
 
 
