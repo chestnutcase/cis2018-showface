@@ -26,11 +26,12 @@ class board():
             self.grid = grid
         else:
             self.grid = []
-            numbers = range(0, (self.size**2))
-            numbers.remove(0) # Take out leading zero
+            numbers = []
+            for element in range(1, (self.size**2)):
+                numbers.append(element)
             numbers.append(0) # Drop it back in at the end
             ##print numbers
-            for i in xrange(0, size):
+            for i in range(0, size):
                 self.grid.append(numbers[size*i:size*i+size])
             ##print self.grid
             self.blank_pos = (size-1, size-1)
@@ -42,8 +43,8 @@ class board():
         ##print "Actual blank_pos:", self.blank_pos
 
     def find_blank_pos(self, grid):
-        for i in xrange(len(grid[0])):
-            for j in xrange(len(grid)):
+        for i in range(len(grid[0])):
+            for j in range(len(grid)):
                 if grid[i][j] == 0:
                     return (i, j)
         #print "Couldn't find the blank tile."
@@ -70,8 +71,8 @@ class board():
     def is_same_grid(self, board):
         if not self.size == board.size:
             return False
-        for i in xrange(0, self.size):
-            for j in xrange(0, self.size):
+        for i in range(0, self.size):
+            for j in range(0, self.size):
                 if not self.grid[i][j] == board.grid[i][j]:
                     return False
         return True
@@ -122,8 +123,8 @@ class board():
 
     def tiles_out_of_place(self, goal):
         t = 0
-        for i in xrange(self.size):
-            for j in xrange(self.size):
+        for i in range(self.size):
+            for j in range(self.size):
                 if self.grid[i][j] is not goal.grid[i][j]:
                     t += 1
         return t
@@ -136,8 +137,8 @@ class board():
         m = 0
         tiles = []
         # Check which tiles are out of place compared to the goal state
-        for i in xrange(self.size):
-            for j in xrange(self.size):
+        for i in range(self.size):
+            for j in range(self.size):
                 if not self.grid[i][j] == goal.grid[i][j]:
                     tiles.append((i, j, goal.grid[i][j], 0))
         # Find the Manhattan distance between goal and actual position 
@@ -145,8 +146,8 @@ class board():
         i_diff = 0
         j_diff = 0
         for t in tiles:
-            for i in xrange(self.size):
-                for j in xrange(self.size):
+            for i in range(self.size):
+                for j in range(self.size):
                     if self.grid[i][j] == t[2]:
                         if i > t[0]:
                             i_diff = i - t[0]
