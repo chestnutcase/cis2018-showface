@@ -9,6 +9,7 @@ from keras.models import Sequential
 from keras.utils import np_utils
 import numpy as np
 from codeitsuisse import app
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +38,7 @@ def evaluate_mlq2():
     n_samples = np.array(data["question"]).shape[0]
     questions = np.array(data["question"]).reshape((n_samples, 28, 28, 1))
     model = modelA()
-    model.load_weights("mnist-weights.yaml")
+    model.load_weights(os.path.dirname(os.path.abspath(__file__))+"mnist-weights.yaml")
     prediction = model.predict(questions).reshape(n_samples)
     logging.info("My result :{}".format(result))
     return jsonify({"answer": prediction})
