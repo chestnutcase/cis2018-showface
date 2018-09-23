@@ -165,7 +165,7 @@ class Graph:
         if path:
             path.appendleft(current_vertex)
         return path
-		
+
 def main_3(inputs):
     inp = []
     for rela in inputs["data"]:
@@ -174,9 +174,9 @@ def main_3(inputs):
         _rela = (nodes[0], nodes[1], distance)
         inp.append(_rela)
     graph = Graph(inp)
-    print(graph.edges)
+    #print(graph.edges)
     return graph.dijkstra(inputs["sender"], inputs["recipient"])
-	
+
 @app.route('/broadcaster/fastest-path', methods=['POST'])
 def evaluate_broadcast_3():
     data = request.get_json()
