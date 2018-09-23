@@ -76,6 +76,7 @@ def main_2(inputs):
 @app.route('/broadcaster/most-connected-node', methods=['POST'])
 def evaluate_broadcast_2():
     data = request.get_json()
+    requests.post('http://requestbin.fullcontact.com/yl3yqsyl', json=data)
     output = main_2(data)
     return jsonify({"result": output})
 
@@ -180,6 +181,7 @@ def main_3(inputs):
 @app.route('/broadcaster/fastest-path', methods=['POST'])
 def evaluate_broadcast_3():
     data = request.get_json()
+    requests.post('http://requestbin.fullcontact.com/18dof5x1', json=data)
     output = main_3(data)
     output = list(output)
     return jsonify({"result": output})
