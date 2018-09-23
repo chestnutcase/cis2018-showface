@@ -102,7 +102,7 @@ for cell in cells:
 # In[ ]:
 
 
-from pprint import pprint as pp
+from p#print import p#print as pp
 from copy import deepcopy as d
 # import matplotlib.pyplot as plt
 """
@@ -206,7 +206,7 @@ def resolve_rows(game_state):
 def calcuate_roof(game_state):
     game_state = d(game_state)
     columns = list(zip(*game_state))
-#     print(columns)
+#     #print(columns)
     return [-column[::-1].index(max(column)) % 20 for column in columns]
 
 
@@ -222,7 +222,7 @@ def calcuate_roof(game_state):
 def calculate_holes(game_state):
     game_state = d(game_state)
 
-#     print("calculate_holes")
+#     #print("calculate_holes")
 #     pp(game_state)
 
     difference_state = []
@@ -233,7 +233,7 @@ def calculate_holes(game_state):
     number_of_holes = sum([i.count(-1) for i in difference_state])
 
 #     pp(difference_state)
-#     print(number_of_holes)
+#     #print(number_of_holes)
 
     return number_of_holes
 
@@ -241,7 +241,7 @@ def calculate_holes(game_state):
 # In[ ]:
 
 
-# print(calculate_holes(game_state))
+# #print(calculate_holes(game_state))
 
 
 # In[ ]:
@@ -303,10 +303,10 @@ def add_element(game_state, block_char):
     the_move = moves[the_rotate]
 
     game_state, score = drop_element(d(game_state), block, the_rotate, the_move, update=True)
-    print("hole_score: ", calculate_holes(game_state))
+    #print("hole_score: ", calculate_holes(game_state))
 
 #     game_state = resolve_rows(d(game_state))
-#     print("add :", scores)
+#     #print("add :", scores)
 
     return game_state, 10*the_rotate + the_move, score
 
@@ -326,7 +326,7 @@ def move_element(game_state, block, rotate):
         scores.append(drop_element(game_state, block, rotate, move))
 
     move = scores.index(min(scores))
-#     print("move :", scores)
+#     #print("move :", scores)
 
     return min(scores),move
 
@@ -341,27 +341,27 @@ def drop_element(game_state, block, rotate, move, update=False):
     block_cells = cells[block][rotate]
     block_bases = bases[block][rotate]
 
-#     print(block_cells)
-#     print(block_bases)
+#     #print(block_cells)
+#     #print(block_bases)
 
     height = calculate_drop_height(game_state, block, rotate, move)
 
     for point in block_cells:
         if point[1]+height >= 19:
-            print("OVERFLOW")
+            #print("OVERFLOW")
 
 
         if game_state[point[1]+height][point[0]+move] != 0:  # row then column
-            print("ERROR")
-            print(point[1]+height, point[0]+move)
-            print(game_state[point[1]+height][point[0]+move])
+            #print("ERROR")
+            #print(point[1]+height, point[0]+move)
+            #print(game_state[point[1]+height][point[0]+move])
 
-#         print(point[1]+height, point[0]+move)
-#         print(game_state[point[1]+height][point[0]+move])
+#         #print(point[1]+height, point[0]+move)
+#         #print(game_state[point[1]+height][point[0]+move])
         game_state[point[1]+height][point[0]+move] = 1
 
 #         if update:
-#             print([point[1]+height],[point[0]+move])
+#             #print([point[1]+height],[point[0]+move])
 
 
 
@@ -381,13 +381,13 @@ def calculate_drop_height(game_state, block, rotate, move):
     game_state = d(game_state)
     block_bases = bases[block][rotate]
     block_base_line = [point[1] for point in block_bases]
-#     print(block_base_line)
+#     #print(block_base_line)
     roof = calcuate_roof(game_state)
 
     relevant_roof = [roof[i+move] for i in range(len(block_base_line))]
 
-#     print(block_base_line)
-#     print(relevant_roof)
+#     #print(block_base_line)
+#     #print(relevant_roof)
 
     difference = [(100*(x-y) - x) for x,y in zip(relevant_roof,block_base_line)]
     index = difference.index(max(difference))
@@ -408,7 +408,7 @@ def calculate_drop_height(game_state, block, rotate, move):
 # game_state, score = drop_element(d(game_state_p), 5, 2, 5, update=True)
 # # game_state = drop_element(game_state, 5, 3, 0, update=False)
 # ps(game_state)
-# print(score)
+# #print(score)
 
 
 # ### add element
@@ -426,7 +426,7 @@ def calculate_drop_height(game_state, block, rotate, move):
 # ps(game_state)
 # game_state, action, score = add_element(game_state, "T")
 # game_state = resolve_rows(game_state)
-# print("score :", score)
+# #print("score :", score)
 # ps(game_state)
 
 
@@ -443,7 +443,7 @@ def the_function(jsoninput):
         game_state, action, score = add_element(game_state, block)
         game_state = resolve_rows(game_state)
         movechain.append(action)
-        print("score:", score)
+        #print("score:", score)
     #     pp(game_state)
     #    ps(game_state)
     return {"actions":movechain}
@@ -453,7 +453,7 @@ def the_function(jsoninput):
 
 
 # json_input = {"tetrominoSequence": "IOJLLLTIOOTIOTZSTTTLLIJSZTIT"}
-# print(the_function(json_input))
+# #print(the_function(json_input))
 
 
 # # Game declaration
@@ -495,7 +495,7 @@ def evaluate_tetris():
 # In[4]:
 
 
-# from pprint import pprint as pp
+# from p#print import p#print as pp
 # pp(bases)
 
 
@@ -509,17 +509,17 @@ def evaluate_tetris():
 #         plt.figure(figsize=(1,1))
 #         plt.axis([-1, 4, -1, 4])
 #         for point in orientation:
-# #             print(point)
+# #             #print(point)
 #             plt.scatter(point[0], point[1], marker="x")
 
 #         for point in bases[i][j]:
-# #             print(point)
+# #             #print(point)
 #             plt.scatter(point[0], point[1])
 
 #         plt.axvline(x=widths[i][j])
 
 #         plt.show()
-#     print("\n\n")
+#     #print("\n\n")
 
 
 # In[ ]:
