@@ -181,4 +181,5 @@ def main_3(inputs):
 def evaluate_broadcast_3():
     data = request.get_json()
     output = main_3(data)
+    output = list(output)
     return jsonify({"result": output})
